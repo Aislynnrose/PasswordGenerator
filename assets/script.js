@@ -2,14 +2,14 @@
 var generateBtn = document.querySelector("#generate");
 
 //These are the pwd input requirements
-function writePassword(NumsChars) {
-  if (isNan(NumsChars)) {
+function writePassword(numsChars) {
+  if (isNaN(numsChars)) {
     alert("Please select a valid number");
     return false;
-  } else if (number.parseInt(NumsChars) <8) {
+  } else if (parseInt(numsChars) <8) {
 alert("This password is too short, must be at least 8 characters")
 return false;
-  } else if (parseInt(NumsChars)>= 128) {
+  } else if (parseInt(numsChars)>= 128) {
     alert("This password is too long, must be less than 128 characters")
     return false;
   }
@@ -23,87 +23,83 @@ function getRandomElemtFromArray(GeneratedPWD) {
 
 // This will determine users required password options
 function generatePassword() {
-  var Characters = prompt(
+  var numsChars = prompt(
     "How many characters do you want your password to contain?"
     );
-  var validPWD = writePassword (Characters);
+  var validPWD = writePassword (numsChars);
   if (validPWD) {
-    const SpecialCharacters = confirm(`
+    var specialCharacters = confirm(`
     Would you like your password to contain special characters?`);
-    const nums = confirm(
+    var nums = confirm(
       'Would you like your password to contain numbers?');
-    const includesUpper = confirm(
+    var includesUpper = confirm(
       'Would you like your paddword to contain uppercase?');
-    const includesLower = confirm(
+    var includesLower = confirm(
       'Would you like your paddword to contain lowercase?');
-}
-// If statement to check pwd reqs
-if (
-  [SpecialCharacters, nums, includesUpper, includesUpper].includes(true)
-)
-// Array for characters to include in pwd and absolute amt to include
-var charactersPwd = [];
-let absoluteChar = [];
-
-if (SpecialCharacters) {
-  charactersPwd = charactersPwd.concat(specialCharacters);
+  }
+  // If statement to check pwd reqs
+  if (
+    [specialCharacters, nums, includesUpper, includesUpper].includes(
+    true
+    )
+  )
+  // Array for characters to include in pwd and absolute amt to include
+  var charactersPwd = [];
+  var absoluteChar = [];
+  if (specialCharacters) {
+  charactersPwd = charactersPwd.concat(specialChars);
   absoluteChar.push(
-    specialCharacters[Math.floor(Math.random() * specialCharacters.length)]
+    specialChars[Math.floor(Math.random() * specialChars.length)]
   );
-}
-if (nums) {
-  charactersPwd = charactersPwd.concat(nums);
+  }
+  if (nums) {
+  charactersPwd = charactersPwd.concat(numbers);
   absoluteChar.push(
-    nums[Math.floor(Math.random() * nums.length)]
+    numbers[Math.floor(Math.random() * numbers.length)]
   );
-}
-if (includesLower) {
-  charactersPwd = charactersPwd.concat(includesLower);
+  }
+  if (includesLower) {
+  charactersPwd = charactersPwd.concat(lowerCase);
   absoluteChar.push(
-    includesLower[
-      Math.floor(Math.random() * includesLower.length)
+    lowerCase[Math.floor(Math.random() * lowerCase.length)
     ]
   );
-}
-if (includesUpper) {
-  charactersPwd = charactersPwd.concat(includesUpper);
+  }
+  if (includesUpper) {
+  charactersPwd = charactersPwd.concat(upperCase);
   absoluteChar.push(
-    includesUpper[
-      Math.floor(Math.random() * includesUpper.length)
+    upperCase[Math.floor(Math.random() * upperCase.length)
     ]
   );
-}
-// Sets the password length and selects random characters from the array of characters and adds them into the password
-var randomize = [];
-for (var i = 0; i < NumsChars; i++) {
+  }
+  // Sets the password length and selects random characters from the array of characters and adds them into the password
+  var randomize = [];
+  for (var i = 0; i < numsChars; i++) {
   var index = Math.floor(Math.random() * charactersPwd.length);
   randomize.push(charactersPwd[index]);
-}
-var newPassword = {};
-
-// Making sure characters are not being replaced more than necessary
-while (absoluteChar.length > 0) {
-  var replace = Math.floor(Math.random() * randomize.length);
-  if (!newPassword == [replace]) {
-    randomize[replace] = absoluteChar.pop();
-    newPassword =[replace] = true;
   }
-}
-return randomize.join("");
-}
-
-// Puts created password into the password box
-function createPassword() {
+  var newPassword = {};
+  // Making sure characters are not being replaced more than necessary
+  while (absoluteChar.length > 0) {
+    var replace = Math.floor(Math.random() * randomize.length);
+    if (!newPassword == [replace]) {
+      randomize[replace] = absoluteChar.pop();
+      newPassword[replace] = true;
+    }
+  }
+  return randomize.join("");
+  }
+  // Puts created password into the password box
+  function createPassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-}
-// Listens for click to generate password
-generateBtn.addEventListener("click", createPassword);
-
-// Array of special characters to be included in password
-var specialCharacters = [
+  };
+  // Listens for click to generate password
+  generateBtn.addEventListener("click", createPassword);
+  // Array of special characters to be included in password
+  var specialChars = [
   "@",
   "%",
   "+",
@@ -127,12 +123,11 @@ var specialCharacters = [
   "-",
   "_",
   ".",
-];
-// Array of numeric characters to be included in password
-var nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
-// Array of lowercase characters to be included in password
-var includesLower = [
+  ];
+  // Array of numeric characters to be included in password
+  var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  // Array of lowercase characters to be included in password
+  var lowerCase = [
   "a",
   "b",
   "c",
@@ -159,10 +154,9 @@ var includesLower = [
   "x",
   "y",
   "z",
-];
-
-// Array of uppercase characters to be included in password
-var includesUpper = [
+  ];
+  // Array of uppercase characters to be included in password
+  var upperCase = [
   "A",
   "B",
   "C",
@@ -189,4 +183,4 @@ var includesUpper = [
   "X",
   "Y",
   "Z",
-];
+  ];

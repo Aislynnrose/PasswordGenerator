@@ -104,7 +104,10 @@ button[disabled] {
   border: none;
   display: block;
   width: 100%;
-  padding: 15px 15px 15px 85px;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 85px;
   font-size: 1.2rem;
   text-align: center;
   margin-top: 10px;
